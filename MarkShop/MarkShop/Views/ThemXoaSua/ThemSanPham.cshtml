@@ -1,0 +1,59 @@
+﻿@model MarkShop.SanPham
+
+@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+
+<style>
+    span {
+        font-size: 11px;
+        margin-top: 5px;
+    }
+</style>
+<div class="container">
+    @using (Html.BeginForm("ThemSanPham", "ThemXoaSua", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "form-validate" }))
+    {
+        <h2 class="text-center lead mb-3 font-weight-bold" style="font-size: 36px; text-shadow: 0 0 8px rgba(0,0,0,0.2)" data-aos="flip-right">Thêm sản phẩm</h2>
+        <div class="form-group">
+            <p class="font-weight-bold">Tên sản phẩm</p>
+            @Html.TextBox("TenSP", "", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Mô tả</p>
+            @Html.TextBox("MoTa", "", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Giá bán</p>
+            @Html.TextBox("GiaBan", "", new { @class = "form-control", min = "10000" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Giá nhập</p>
+            @Html.TextBox("GiaNhap", "", new { @class = "form-control", min = "10000" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Sản phẩm dành cho</p>
+            @Html.DropDownList("GioiTinh", new List<SelectListItem> { new SelectListItem { Text = "Nam", Value = "Nam", Selected = true }, new SelectListItem { Text = "Nữ", Value = "Nữ" } }, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Tên loại sản phẩm</p>
+            @Html.DropDownList("MaLoaiSP", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Tên nhà cung cấp</p>
+            @Html.DropDownList("MaNCC", null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Số lượng tồn</p>
+            @Html.TextBox("SoLuongTon", "", new { @class = "form-control", min = "0" })
+        </div>
+        <div class="form-group">
+            <p class="font-weight-bold">Hình ảnh</p>
+            @Html.TextBox("fUpload", "", new { @class = "form-control", type = "file" })
+            <span class="text-danger">@TempData["UploadFail"]</span>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-outline-danger" type="submit" style="letter-spacing: 1px;">Thêm sản phẩm</button>
+        </div>
+    }
+</div>

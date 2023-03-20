@@ -1,0 +1,57 @@
+﻿@model MarkShop.SanPham
+
+@{
+    ViewBag.Title = "SuaSanPham";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm("SuaSanPham", "ThemXoaSua", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "form-validate" }))
+    {
+        <h2 class="text-center lead mb-3 font-weight-bold" style="font-size: 36px; text-shadow: 0 0 8px rgba(0,0,0,0.2)" data-aos="flip-right">Sửa thông tin sản phẩm</h2>
+        @Html.HiddenFor(model => model.MaSP)
+        <div class="form-group">
+            <p>Tên sản phẩm</p>
+            @Html.TextBoxFor(model => model.TenSP, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p>Mô tả</p>
+            @Html.TextBoxFor(model => model.MoTa, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p>Giá bán</p>
+            @Html.TextBoxFor(model => model.GiaBan, new { @class = "form-control", min = "10000" })
+        </div>
+        <div class="form-group">
+            <p>Giá nhập</p>
+            @Html.TextBoxFor(model => model.GiaNhap, new { @class = "form-control", min = "10000" })
+        </div>
+        <div class="form-group">
+            <p>Sản phẩm dành cho</p>
+            @Html.DropDownListFor(model => model.GioiTinh, new List<SelectListItem> { new SelectListItem { Text = "Nam", Value = "Nam" }, new SelectListItem { Text = "Nữ", Value = "Nữ", Selected = true } }, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p>Tên loại sản phẩm</p>
+            @Html.DropDownListFor(model => model.MaLoaiSP, null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p>Tên nhà cung cấp</p>
+            @Html.DropDownListFor(model => model.MaNCC, null, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <p>Số lượng tồn</p>
+            @Html.TextBoxFor(model => model.SoLuongTon, new { @class = "form-control", min = "0" })
+        </div>
+        <div class="form-group">
+            <p>Hình ảnh</p>
+            @Html.TextBoxFor(model => model.Anh, new { @class = "form-control", type = "file", Name = "fUpload" })
+            <span class="text-danger">@TempData["UploadFail"]</span>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-outline-danger" type="submit" style="letter-spacing: 1px;">
+                Sửa sản phẩm
+            </button>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "QuanLiKhachHang";
+    Layout = "~/Views/Admin/LayoutAdmin.cshtml";
+}
+<style>
+    td {
+        vertical-align: middle !important;
+    }
+</style>
+<div class="layout-page-customer">
+    <h3 class="text-center mb-3 font-weight-bold" data-aos="flip-right">Danh sách khách hàng đã đặt hàng</h3>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mã KH</th>
+                <th>Tên KH</th>
+                <th>Tài khoản</th>
+                <th>Mật khẩu</th>
+                <th>SDT</th>
+                <th>Mã HD</th>
+                <th>Tình trạng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.GetList)
+            {
+                <tr>
+                    <td>@item.MaKH</td>
+                    <td>@item.TenKH</td>
+                    <td>@item.TaiKhoan</td>
+                    <td>@item.MatKhau</td>
+                    <td>@item.SoDienThoai</td>
+                    <td>@item.MaHD</td>
+                    <td>
+                        @if (item.TinhTrang == false)
+                        {
+                            <span>Chưa thanh toán</span>
+                        }
+                        else
+                        {
+                            <span>Đã thanh toán</span>
+                        }
+                    </td>
+
+                    <td><button class="btn btn-danger btnXoaTK" data-makh="@item.MaKH">Xoá</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
